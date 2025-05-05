@@ -83,6 +83,29 @@ namespace OneBeyondApi
                 LoanEndDate = null
             };
 
+            var reservation1 = new Reservation
+            {
+                Id = Guid.NewGuid(),
+                Book = agileBook,
+                Borrower = daveSmith,
+                ReservedDate = DateTime.Now.AddDays(-1)
+            };
+
+            var reservation2 = new Reservation
+            {
+                Id = Guid.NewGuid(),
+                Book = agileBook,
+                Borrower = lianaJames,
+                ReservedDate = DateTime.Now
+            };
+
+            var lateBookLoan = new BookStock
+            {
+                Book = rustBook,
+                OnLoanTo = daveSmith,
+                LoanEndDate = DateTime.Now.AddDays(-3)
+            };
+
             using (var context = new LibraryContext())
             {
                 context.Authors.Add(ernestMonkjack);
@@ -101,6 +124,10 @@ namespace OneBeyondApi
                 context.Catalogue.Add(bookNotOnLoan);
                 context.Catalogue.Add(bookOnLoanUntilNextWeek);
                 context.Catalogue.Add(rustBookStock);
+
+                context.Reservations.Add(reservation1);
+                context.Reservations.Add(reservation2);
+                context.Catalogue.Add(lateBookLoan);
 
                 context.SaveChanges();
 
