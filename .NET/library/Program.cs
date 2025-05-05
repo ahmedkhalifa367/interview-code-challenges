@@ -1,5 +1,6 @@
 using OneBeyondApi;
 using OneBeyondApi.DataAccess;
+using OneBeyondApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBorrowerRepository, BorrowerRepository>();
 builder.Services.AddScoped<ICatalogueRepository, CatalogueRepository>();
+builder.Services.AddScoped<IOnLoanService, OnLoanService>();
 
 // Seed test data into memory DB
 SeedData.SetInitialData();
