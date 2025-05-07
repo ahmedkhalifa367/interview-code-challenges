@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OneBeyondApi.DataAccess;
+using OneBeyondApi.Model;
 using OneBeyondApi.Services;
 
 namespace OneBeyondApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Route("onloan")]
     public class OnLoanController : ControllerBase
     {
         private IOnLoanService OnLoanService { get; }

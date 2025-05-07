@@ -15,6 +15,7 @@ namespace OneBeyondApi.Services
         }
 
         public async Task<List<LoanDto>> GetActiveLoans()
+        public async Task<IList<LoanDto>> GetActiveLoans()
         {
             return await DbContext.Catalogue
                 .Include(bs => bs.Book)
@@ -83,6 +84,7 @@ namespace OneBeyondApi.Services
         }
 
         public ReservationStatusDto GetReservationStatus(Guid bookId, Guid borrowerId)
+        public ReservationStatusDto? GetReservationStatus(Guid bookId, Guid borrowerId)
         {
             var reservations = DbContext.Reservations
                 .Where(r => r.BookId == bookId)
@@ -105,3 +107,4 @@ namespace OneBeyondApi.Services
         }
     }
 }
+
