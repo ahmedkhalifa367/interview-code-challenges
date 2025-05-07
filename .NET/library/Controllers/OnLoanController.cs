@@ -8,7 +8,6 @@ namespace OneBeyondApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Route("onloan")]
     public class OnLoanController : ControllerBase
     {
         private IOnLoanService OnLoanService { get; }
@@ -25,7 +24,7 @@ namespace OneBeyondApi.Controllers
             return Ok(loans);
         }
 
-        [HttpPost("return/{bookStockId}")]
+        [HttpPost("{bookStockId}/return")]
         public async Task<IActionResult> ReturnBook(Guid bookStockId)
         {
             var result = await OnLoanService.ReturnBook(bookStockId);
@@ -39,7 +38,7 @@ namespace OneBeyondApi.Controllers
             });
         }
 
-        [HttpPost("reserve/{bookId}/{borrowerId}")]
+        [HttpPost("{bookId}/{borrowerId}/reserve")]
         public async Task<IActionResult> ReserveBook(Guid bookId, Guid borrowerId)
         {
             var success = await OnLoanService.ReserveBook(bookId, borrowerId);
@@ -48,7 +47,7 @@ namespace OneBeyondApi.Controllers
             return Ok("Reservation placed successfully.");
         }
 
-        [HttpGet("reservation-status/{bookId}/{borrowerId}")]
+        [HttpGet("{bookId}/{borrowerId}/reservation-status")]
         public IActionResult GetReservationStatus(Guid bookId, Guid borrowerId)
         {
             var status = OnLoanService.GetReservationStatus(bookId, borrowerId);
