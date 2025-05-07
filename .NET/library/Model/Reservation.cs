@@ -5,7 +5,6 @@ namespace OneBeyondApi.Model
     public class Reservation
     {
         public Guid Id { get; set; }
-        public DateTime ReservedDate { get; set; }
 
         [ForeignKey("Book")]
         public Guid BookId { get; set; }
