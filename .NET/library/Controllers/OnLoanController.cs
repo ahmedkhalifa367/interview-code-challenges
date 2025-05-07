@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OneBeyondApi.Services;
 
 namespace OneBeyondApi.Controllers
@@ -8,9 +7,9 @@ namespace OneBeyondApi.Controllers
     [ApiController]
     public class OnLoanController : ControllerBase
     {
-        private OnLoanService OnLoanService { get; }
+        private IOnLoanService OnLoanService { get; }
 
-        public OnLoanController(OnLoanService onLoanService)
+        public OnLoanController(IOnLoanService onLoanService)
         {
             OnLoanService = onLoanService ?? throw new ArgumentNullException(nameof(onLoanService));
         }
